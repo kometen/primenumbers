@@ -1,19 +1,18 @@
 fn main() {
-    let mut primes = vec![2];
+    let mut primes: Vec<usize> = vec![2];
     let mut is_prime: bool = false;
 
-    for x in 3..200 {
-//        println!("candidate: {}", x);
+    for x in 3..200000 {
         for &prime in &primes {
+            // Assume it's a prime.
             is_prime = true;
-//            println!("prime: {}", &prime);
             if &x % &prime == 0 {
-//                println!("divisible by {}", &prime);
+                // Divisible by already found primes.
                 is_prime = false;
                 break;
             }
             if 2 * &prime > x {
-//                println!("stop");
+                // Stop looping when we get past half the candidate number.
                 break;
             }
         }
@@ -22,32 +21,8 @@ fn main() {
             primes.push(_x);
         }
     }
-    println!("Number of primenumbers: {}", primes.len());
-    for &prime in &primes {
+/*    for &prime in &primes {
         println!("{}", prime);
-    }
+    }*/
+//    println!("Number of primenumbers: {}", primes.len());
 }
-
-
-/*
-
-        for (index, &prime) in primes.iter().enumerate() {
-            println!("{}", &prime);
-            if 2 * x > prime {
-                println!("stop");
-            }
-        }
-
-        for &prime in &primes {
-            println!("prime: {}", &prime);
-            if 2 * &x < prime {
-                println!("continue");
-            } else if &x % &prime != 0 {
-                println!("continue");
-            } else {
-                println!("stop");
-            }
-        }
-
-
-*/
