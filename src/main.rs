@@ -26,7 +26,7 @@ fn main() {
     let mut primes: Vec<usize> = vec![2];
     let mut is_prime: bool = false;
 
-    for x in 3..limit {
+    for x in (3..limit).step_by(2) {
         for &prime in &primes {
             // Assume it's a prime.
             is_prime = true;
@@ -49,4 +49,5 @@ fn main() {
         println!("{}", prime);
     }*/
 //    println!("Number of primenumbers: {}", primes.len());
+//    println!("Primenumber at index 1967: {}", primes[1967]);
 }
