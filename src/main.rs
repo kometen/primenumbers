@@ -35,7 +35,7 @@ fn main() {
                 is_prime = false;
                 break;
             }
-            if 2 * &prime > x {
+            if &prime * &prime > x {
                 // Stop looping when we get past half the candidate number.
                 break;
             }
@@ -48,6 +48,6 @@ fn main() {
 /*    for &prime in &primes {
         println!("{}", prime);
     }*/
-//    println!("Number of primenumbers: {}", primes.len());
-//    println!("Primenumber at index 1967: {}", primes[1967]);
+    println!("Number of primenumbers: {}", primes.len());
+    println!("Primenumber at index 1967: {}", primes[1967]);
 }
