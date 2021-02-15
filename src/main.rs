@@ -2,6 +2,24 @@ extern crate clap;
 
 use clap::{Arg, App};
 
+fn is_prime_fn(x: usize, primes: &Vec<usize>) -> bool {
+    let mut is_prime = false;
+    for &prime in primes {
+        // Assume it's a prime.
+        is_prime = true;
+        if &x % &prime == 0 {
+            // Divisible by already found primes.
+            is_prime = false;
+            break;
+        }
+        if &prime * &prime > x {
+            // Stop looping when we get past half the candidate number.
+            break;
+        }
+    }
+    is_prime
+}
+
 fn main() {
     // Command line parameters.
     let matches = App::new("primenumbers")
@@ -24,22 +42,9 @@ fn main() {
     };
 
     let mut primes: Vec<usize> = vec![2];
-    let mut is_prime: bool = false;
 
     for x in (3..limit).step_by(2) {
-        for &prime in &primes {
-            // Assume it's a prime.
-            is_prime = true;
-            if &x % &prime == 0 {
-                // Divisible by already found primes.
-                is_prime = false;
-                break;
-            }
-            if &prime * &prime > x {
-                // Stop looping when we get past half the candidate number.
-                break;
-            }
-        }
+        let is_prime = is_prime_fn(x, &primes);
         if is_prime {
             let _x = x;
             primes.push(_x);
